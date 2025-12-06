@@ -263,6 +263,7 @@ Always ask clarifying questions if user hasn't provided: current weight, height,
     } finally {
       this.loadingSignal.set(false);
     }
+    
   }
 
   private async getResponse(userMessage: string): Promise<string> {
