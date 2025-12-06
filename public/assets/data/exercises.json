@@ -1,0 +1,403 @@
+[
+  {
+    "id": "ex-001",
+    "name": "Barbell Bench Press",
+    "targetMuscle": "chest",
+    "secondaryMuscles": ["triceps", "shoulders"],
+    "description": "The barbell bench press is a compound exercise that primarily targets the chest muscles while also engaging the triceps and shoulders. It is one of the most effective exercises for building upper body strength and is a staple in most strength training programs.",
+    "instructions": [
+      "Lie flat on a bench with your feet firmly planted on the floor",
+      "Grip the barbell slightly wider than shoulder-width apart",
+      "Unrack the bar and position it directly above your chest",
+      "Lower the bar slowly to your mid-chest, keeping elbows at 45 degrees",
+      "Press the bar back up explosively to the starting position",
+      "Keep your core tight and maintain a slight arch in your lower back"
+    ],
+    "difficulty": "intermediate",
+    "equipment": ["Barbell", "Flat Bench", "Weight Plates"],
+    "imageUrl": "barbellBenchPress.jpg",
+    "calories": 150,
+    "duration": 20
+  },
+  {
+    "id": "ex-002",
+    "name": "Pull-ups",
+    "targetMuscle": "back",
+    "secondaryMuscles": ["biceps", "shoulders", "core"],
+    "description": "Pull-ups are a fundamental bodyweight exercise that targets the latissimus dorsi, biceps, and core muscles. They are excellent for building upper body pulling strength and developing a V-shaped back.",
+    "instructions": [
+      "Grab the pull-up bar with an overhand grip, hands slightly wider than shoulder-width",
+      "Hang with arms fully extended and engage your core",
+      "Pull your body up by driving your elbows down and back",
+      "Continue pulling until your chin clears the bar",
+      "Lower yourself with control to the starting position",
+      "Avoid swinging or using momentum"
+    ],
+    "difficulty": "intermediate",
+    "equipment": ["Pull-up Bar"],
+    "imageUrl": "Pull-ups.jpg",
+    "calories": 100,
+    "duration": 15
+  },
+  {
+    "id": "ex-003",
+    "name": "Barbell Squats",
+    "targetMuscle": "quadriceps",
+    "secondaryMuscles": ["glutes", "hamstrings", "core"],
+    "description": "Barbell squats are the king of lower body exercises. They target the quadriceps, glutes, and hamstrings while also engaging the core for stability. This compound movement is essential for building leg strength and overall athletic performance.",
+    "instructions": [
+      "Position the barbell on your upper back (high bar) or rear delts (low bar)",
+      "Stand with feet shoulder-width apart, toes slightly pointed out",
+      "Brace your core and keep your chest up throughout the movement",
+      "Initiate the movement by breaking at the hips and knees simultaneously",
+      "Lower until your thighs are at least parallel to the floor",
+      "Drive through your heels to return to the starting position"
+    ],
+    "difficulty": "intermediate",
+    "equipment": ["Barbell", "Squat Rack", "Weight Plates"],
+    "imageUrl": "Barbell Squats.jpg",
+    "calories": 180,
+    "duration": 25
+  },
+  {
+    "id": "ex-004",
+    "name": "Deadlift",
+    "targetMuscle": "back",
+    "secondaryMuscles": ["hamstrings", "glutes", "core"],
+    "description": "The deadlift is a compound exercise that works the entire posterior chain. It is one of the best exercises for overall strength development and targets the back, glutes, hamstrings, and core simultaneously.",
+    "instructions": [
+      "Stand with feet hip-width apart, bar over mid-foot",
+      "Bend at hips and knees to grip the bar just outside your legs",
+      "Keep your back flat, chest up, and shoulders over the bar",
+      "Take a deep breath and brace your core",
+      "Drive through your heels, extending hips and knees together",
+      "Stand fully upright, then reverse the movement to lower the bar"
+    ],
+    "difficulty": "advanced",
+    "equipment": ["Barbell", "Weight Plates"],
+    "imageUrl": "Deadlift.jpg",
+    "calories": 200,
+    "duration": 25
+  },
+  {
+    "id": "ex-005",
+    "name": "Overhead Shoulder Press",
+    "targetMuscle": "shoulders",
+    "secondaryMuscles": ["triceps", "core"],
+    "description": "The overhead press is an excellent compound exercise for building shoulder strength and size. It primarily targets the deltoids while also engaging the triceps and core for stability.",
+    "instructions": [
+      "Stand with feet shoulder-width apart, holding the bar at shoulder height",
+      "Grip the bar slightly wider than shoulder-width",
+      "Brace your core and squeeze your glutes",
+      "Press the bar directly overhead until arms are fully extended",
+      "Move your head slightly forward as the bar passes your face",
+      "Lower the bar back to shoulder height with control"
+    ],
+    "difficulty": "beginner",
+    "equipment": ["Barbell", "Dumbbells"],
+    "imageUrl": "Overhead Shoulder Press.jpg",
+    "calories": 90,
+    "duration": 15
+  },
+  {
+    "id": "ex-006",
+    "name": "Bicep Curls",
+    "targetMuscle": "biceps",
+    "secondaryMuscles": ["arms"],
+    "description": "Bicep curls are an isolation exercise that specifically targets the biceps brachii muscle. They are essential for building arm size and definition.",
+    "instructions": [
+      "Stand with feet hip-width apart, holding dumbbells at your sides",
+      "Keep your palms facing forward (supinated grip)",
+      "Keep your upper arms stationary throughout the movement",
+      "Curl the weights up toward your shoulders",
+      "Squeeze your biceps at the top of the movement",
+      "Lower the weights slowly with control"
+    ],
+    "difficulty": "beginner",
+    "equipment": ["Dumbbells", "EZ Bar"],
+    "imageUrl": "Bicep Curls.jpg",
+    "calories": 60,
+    "duration": 10
+  },
+  {
+    "id": "ex-007",
+    "name": "Tricep Dips",
+    "targetMuscle": "triceps",
+    "secondaryMuscles": ["chest", "shoulders"],
+    "description": "Tricep dips are an effective compound exercise for building tricep strength and size. They also engage the chest and shoulders as secondary muscles.",
+    "instructions": [
+      "Position yourself on parallel bars with arms fully extended",
+      "Keep your body upright for tricep emphasis or lean forward for chest",
+      "Lower your body by bending your elbows to about 90 degrees",
+      "Keep your elbows close to your body throughout the movement",
+      "Push back up to the starting position",
+      "Avoid locking out your elbows at the top"
+    ],
+    "difficulty": "intermediate",
+    "equipment": ["Parallel Bars", "Dip Station"],
+    "imageUrl": "Tricep Dips.jpg",
+    "calories": 80,
+    "duration": 12
+  },
+  {
+    "id": "ex-008",
+    "name": "Plank",
+    "targetMuscle": "core",
+    "secondaryMuscles": ["abs", "shoulders"],
+    "description": "The plank is an isometric core exercise that builds stability and endurance in the entire core musculature. It also engages the shoulders and back for support.",
+    "instructions": [
+      "Start in a push-up position, then lower to your forearms",
+      "Keep your body in a straight line from head to heels",
+      "Position your elbows directly under your shoulders",
+      "Engage your core by pulling your belly button toward your spine",
+      "Keep your hips level - don't let them sag or pike up",
+      "Hold the position while breathing steadily"
+    ],
+    "difficulty": "beginner",
+    "equipment": ["Exercise Mat"],
+    "imageUrl": "Plank.jpg",
+    "calories": 50,
+    "duration": 5
+  },
+  {
+    "id": "ex-009",
+    "name": "Walking Lunges",
+    "targetMuscle": "quadriceps",
+    "secondaryMuscles": ["glutes", "hamstrings"],
+    "description": "Walking lunges are a dynamic lower body exercise that improves balance, coordination, and leg strength. They effectively target the quadriceps and glutes.",
+    "instructions": [
+      "Stand tall with feet hip-width apart",
+      "Take a large step forward with one leg",
+      "Lower your body until both knees are at 90-degree angles",
+      "Keep your front knee over your ankle, not past your toes",
+      "Push off the back foot and step forward into the next lunge",
+      "Continue alternating legs as you walk forward"
+    ],
+    "difficulty": "beginner",
+    "equipment": ["Bodyweight", "Dumbbells"],
+    "imageUrl": "Walking Lunges.jpg",
+    "calories": 100,
+    "duration": 15
+  },
+  {
+    "id": "ex-010",
+    "name": "Russian Twists",
+    "targetMuscle": "abs",
+    "secondaryMuscles": ["core"],
+    "description": "Russian twists are a rotational core exercise that targets the obliques. They improve rotational strength and core stability.",
+    "instructions": [
+      "Sit on the floor with knees bent and feet elevated slightly",
+      "Lean back to about 45 degrees while keeping your spine straight",
+      "Hold a weight at chest level or clasp your hands together",
+      "Rotate your torso to one side, bringing the weight beside your hip",
+      "Rotate to the other side in a controlled manner",
+      "Keep your core engaged throughout the movement"
+    ],
+    "difficulty": "intermediate",
+    "equipment": ["Medicine Ball", "Weight Plate", "Dumbbell"],
+    "imageUrl": "Russian Twists.jpg",
+    "calories": 70,
+    "duration": 10
+  },
+  {
+    "id": "ex-011",
+    "name": "Lat Pulldown",
+    "targetMuscle": "back",
+    "secondaryMuscles": ["biceps", "shoulders"],
+    "description": "The lat pulldown is a cable machine exercise that targets the latissimus dorsi. It is excellent for building a wider back and is a great alternative to pull-ups.",
+    "instructions": [
+      "Sit at the lat pulldown machine with thighs secured under the pads",
+      "Grip the bar wider than shoulder-width with an overhand grip",
+      "Lean back slightly and pull the bar down to your upper chest",
+      "Focus on squeezing your shoulder blades together",
+      "Keep your chest up and avoid using momentum",
+      "Return to the starting position with control"
+    ],
+    "difficulty": "beginner",
+    "equipment": ["Cable Machine", "Lat Pulldown Bar"],
+    "imageUrl": "Lat Pulldown.jpg",
+    "calories": 85,
+    "duration": 15
+  },
+  {
+    "id": "ex-012",
+    "name": "Calf Raises",
+    "targetMuscle": "calves",
+    "secondaryMuscles": ["legs"],
+    "description": "Calf raises isolate and strengthen the gastrocnemius and soleus muscles. They are essential for developing lower leg strength and definition.",
+    "instructions": [
+      "Stand on the edge of a step with heels hanging off",
+      "Hold onto something for balance if needed",
+      "Lower your heels below the level of the step for a full stretch",
+      "Rise up onto your toes as high as possible",
+      "Squeeze your calves at the top of the movement",
+      "Lower back down with control"
+    ],
+    "difficulty": "beginner",
+    "equipment": ["Step Platform", "Calf Raise Machine"],
+    "imageUrl": "Calf Raises.jpg",
+    "calories": 40,
+    "duration": 8
+  },
+  {
+    "id": "ex-013",
+    "name": "Dumbbell Rows",
+    "targetMuscle": "back",
+    "secondaryMuscles": ["biceps", "shoulders"],
+    "description": "Dumbbell rows are a unilateral back exercise that helps build thickness in the lats and middle back. They also help correct muscle imbalances between sides.",
+    "instructions": [
+      "Place one knee and hand on a bench for support",
+      "Hold a dumbbell in the opposite hand with arm extended",
+      "Keep your back flat and parallel to the floor",
+      "Pull the dumbbell up toward your hip, elbow close to body",
+      "Squeeze your back muscles at the top",
+      "Lower with control and repeat"
+    ],
+    "difficulty": "beginner",
+    "equipment": ["Dumbbells", "Flat Bench"],
+    "imageUrl": "Dumbbell Rows.jpg",
+    "calories": 75,
+    "duration": 12
+  },
+  {
+    "id": "ex-014",
+    "name": "Push-ups",
+    "targetMuscle": "chest",
+    "secondaryMuscles": ["triceps", "shoulders", "core"],
+    "description": "Push-ups are a classic bodyweight exercise that targets the chest, triceps, and shoulders. They require no equipment and can be done anywhere.",
+    "instructions": [
+      "Start in a high plank position with hands slightly wider than shoulders",
+      "Keep your body in a straight line from head to heels",
+      "Lower your chest toward the floor by bending your elbows",
+      "Keep your elbows at about 45 degrees from your body",
+      "Push back up to the starting position",
+      "Maintain core engagement throughout"
+    ],
+    "difficulty": "beginner",
+    "equipment": ["Bodyweight"],
+    "imageUrl": "https://images.unsplash.com/photo-1598971457999-ca4ef48a9a71?w=400&h=300&fit=crop",
+    "calories": 70,
+    "duration": 10
+  },
+  {
+    "id": "ex-015",
+    "name": "Romanian Deadlift",
+    "targetMuscle": "hamstrings",
+    "secondaryMuscles": ["glutes", "back"],
+    "description": "The Romanian deadlift is a hip-hinge movement that primarily targets the hamstrings and glutes. It is excellent for developing posterior chain strength and flexibility.",
+    "instructions": [
+      "Stand with feet hip-width apart, holding a barbell or dumbbells",
+      "Keep a slight bend in your knees throughout the movement",
+      "Hinge at the hips, pushing them back while lowering the weight",
+      "Keep your back flat and the weight close to your legs",
+      "Lower until you feel a strong stretch in your hamstrings",
+      "Drive your hips forward to return to standing"
+    ],
+    "difficulty": "intermediate",
+    "equipment": ["Barbell", "Dumbbells"],
+    "imageUrl": "Romanian Deadlift.jpg",
+    "calories": 120,
+    "duration": 15
+  },
+  {
+    "id": "ex-016",
+    "name": "Leg Press",
+    "targetMuscle": "quadriceps",
+    "secondaryMuscles": ["glutes", "hamstrings"],
+    "description": "The leg press is a machine-based exercise that allows you to safely lift heavy weights to build lower body strength and size without the balance requirements of squats.",
+    "instructions": [
+      "Sit in the leg press machine with back and head against the pad",
+      "Place feet shoulder-width apart on the platform",
+      "Release the safety handles and lower the weight",
+      "Lower until your knees are at about 90 degrees",
+      "Push the weight back up without locking your knees",
+      "Keep your lower back pressed against the pad"
+    ],
+    "difficulty": "beginner",
+    "equipment": ["Leg Press Machine"],
+    "imageUrl": "Leg Press.jpg",
+    "calories": 140,
+    "duration": 18
+  },
+  {
+    "id": "ex-017",
+    "name": "Face Pulls",
+    "targetMuscle": "shoulders",
+    "secondaryMuscles": ["back"],
+    "description": "Face pulls are an excellent exercise for rear deltoid and upper back development. They help improve posture and shoulder health by strengthening often-neglected muscles.",
+    "instructions": [
+      "Set a cable machine with rope attachment at face height",
+      "Grip the rope with palms facing each other",
+      "Step back to create tension in the cable",
+      "Pull the rope toward your face, separating the ends",
+      "Focus on squeezing your rear deltoids and upper back",
+      "Return to the starting position with control"
+    ],
+    "difficulty": "beginner",
+    "equipment": ["Cable Machine", "Rope Attachment"],
+    "imageUrl": "https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=400&h=300&fit=crop",
+    "calories": 50,
+    "duration": 10
+  },
+  {
+    "id": "ex-018",
+    "name": "Burpees",
+    "targetMuscle": "full-body",
+    "secondaryMuscles": ["chest", "legs", "core"],
+    "description": "Burpees are a high-intensity full-body exercise that combines a squat, push-up, and jump. They are excellent for cardiovascular conditioning and burning calories.",
+    "instructions": [
+      "Start standing with feet shoulder-width apart",
+      "Drop into a squat and place your hands on the floor",
+      "Jump your feet back into a plank position",
+      "Perform a push-up (optional for beginners)",
+      "Jump your feet back to the squat position",
+      "Explosively jump up with arms overhead"
+    ],
+    "difficulty": "intermediate",
+    "equipment": ["Bodyweight"],
+    "imageUrl": "Burpees.jpg",
+    "calories": 150,
+    "duration": 15
+  },
+  {
+    "id": "ex-019",
+    "name": "Hip Thrusts",
+    "targetMuscle": "glutes",
+    "secondaryMuscles": ["hamstrings", "core"],
+    "description": "Hip thrusts are the best exercise for targeting and developing the gluteus maximus. They help build strong, powerful glutes for improved athletic performance.",
+    "instructions": [
+      "Sit on the ground with upper back against a bench",
+      "Roll a barbell over your hips (use a pad for comfort)",
+      "Plant your feet firmly on the floor, shoulder-width apart",
+      "Drive through your heels to lift your hips toward the ceiling",
+      "Squeeze your glutes hard at the top",
+      "Lower with control and repeat"
+    ],
+    "difficulty": "intermediate",
+    "equipment": ["Barbell", "Bench", "Hip Thrust Pad"],
+    "imageUrl": "https://images.unsplash.com/photo-1574680178050-55c6a6a96e0a?w=400&h=300&fit=crop",
+    "calories": 100,
+    "duration": 15
+  },
+  {
+    "id": "ex-020",
+    "name": "Mountain Climbers",
+    "targetMuscle": "core",
+    "secondaryMuscles": ["shoulders", "legs"],
+    "description": "Mountain climbers are a dynamic core exercise that also provides cardiovascular benefits. They engage the entire body while primarily targeting the core.",
+    "instructions": [
+      "Start in a high plank position with hands under shoulders",
+      "Keep your body in a straight line from head to heels",
+      "Drive one knee toward your chest",
+      "Quickly switch legs, bringing the other knee forward",
+      "Continue alternating at a quick pace",
+      "Keep your hips level and core engaged throughout"
+    ],
+    "difficulty": "beginner",
+    "equipment": ["Bodyweight"],
+    "imageUrl": "Mountain Climbers.jpg",
+    "calories": 100,
+    "duration": 10
+  }
+]
+

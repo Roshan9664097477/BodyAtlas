@@ -1,0 +1,261 @@
+<div class="schedule-page">
+  <!-- Background Effects -->
+  <div class="bg-effects">
+    <div class="gradient-orb orb-1"></div>
+    <div class="gradient-orb orb-2"></div>
+    <div class="gradient-orb orb-3"></div>
+  </div>
+
+  <div class="schedule-content">
+    <!-- Header -->
+    <div class="page-header">
+      <div class="header-left">
+        <h1 class="page-title">
+          <span class="title-icon">📅</span>
+          Weekly Schedule
+        </h1>
+        <p class="page-subtitle">Plan and organize your weekly workout routine</p>
+      </div>
+      <a routerLink="/exercises" class="btn-add-exercise">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+        </svg>
+        Browse Exercises
+      </a>
+    </div>
+
+    <!-- Stats Overview -->
+    <div class="stats-row">
+      <div class="stat-card" style="--accent: #22c55e">
+        <div class="stat-icon">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
+          </svg>
+        </div>
+        <div class="stat-info">
+          <span class="stat-value">{{ getTotalExercises() }}</span>
+          <span class="stat-label">Total Exercises</span>
+        </div>
+      </div>
+
+      <div class="stat-card" style="--accent: #3b82f6">
+        <div class="stat-icon">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+          </svg>
+        </div>
+        <div class="stat-info">
+          <span class="stat-value">{{ getWorkoutDays() }}</span>
+          <span class="stat-label">Workout Days</span>
+        </div>
+      </div>
+
+      <div class="stat-card" style="--accent: #f59e0b">
+        <div class="stat-icon">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+          </svg>
+        </div>
+        <div class="stat-info">
+          <span class="stat-value">{{ getRestDays() }}</span>
+          <span class="stat-label">Rest Days</span>
+        </div>
+      </div>
+
+      <div class="stat-card" style="--accent: #ef4444">
+        <div class="stat-icon">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"/>
+          </svg>
+        </div>
+        <div class="stat-info">
+          <span class="stat-value">{{ getTotalCalories() }}</span>
+          <span class="stat-label">Est. Calories</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Week Grid -->
+    <div class="week-grid">
+      @for (day of daysOfWeek; track day; let i = $index) {
+        <div class="day-card" 
+             [class.is-today]="isToday(day)"
+             [class.is-rest]="getDaySchedule(day)?.restDay"
+             [style.animation-delay]="(i * 0.08) + 's'">
+          
+          <!-- Day Header -->
+          <div class="day-header">
+            <div class="day-title">
+              <span class="day-name">{{ getDayLabel(day) }}</span>
+              @if (isToday(day)) {
+                <span class="today-badge">Today</span>
+              }
+            </div>
+            <div class="day-actions">
+              <button 
+                class="rest-toggle"
+                [class.active]="getDaySchedule(day)?.restDay"
+                (click)="toggleRestDay(day)"
+                [title]="getDaySchedule(day)?.restDay ? 'Set as workout day' : 'Set as rest day'"
+              >
+                @if (getDaySchedule(day)?.restDay) {
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+                  </svg>
+                } @else {
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                  </svg>
+                }
+              </button>
+            </div>
+          </div>
+
+          <!-- Day Stats -->
+          <div class="day-stats">
+            <span class="exercise-count">
+              {{ getDayExerciseCount(day) }} exercise{{ getDayExerciseCount(day) !== 1 ? 's' : '' }}
+            </span>
+            @if (getDayCalories(day) > 0) {
+              <span class="calorie-count">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"/>
+                </svg>
+                {{ getDayCalories(day) }} cal
+              </span>
+            }
+          </div>
+
+          <!-- Rest Day Content -->
+          @if (getDaySchedule(day)?.restDay) {
+            <div class="rest-day-content">
+              <div class="rest-icon">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+                </svg>
+              </div>
+              <span class="rest-text">Rest Day</span>
+              <span class="rest-hint">Take time to recover</span>
+            </div>
+          } @else {
+            <!-- Exercise List -->
+            <div class="exercise-list">
+              @for (scheduled of getDaySchedule(day)?.exercises || []; track scheduled.id) {
+                <div class="exercise-item">
+                  <div class="exercise-image">
+                    <img [src]="scheduled.exercise.imageUrl" [alt]="scheduled.exercise.name" (error)="onImageError($event)">
+                  </div>
+                  <div class="exercise-info">
+                    <span class="exercise-name">{{ scheduled.exercise.name }}</span>
+                    <span class="exercise-sets">{{ scheduled.sets }} sets × {{ scheduled.reps }} reps</span>
+                  </div>
+                  <div class="exercise-actions">
+                    <button class="edit-btn" (click)="openEditModal(day, scheduled)" title="Edit">
+                      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                      </svg>
+                    </button>
+                    <button class="delete-btn" (click)="removeExercise(day, scheduled.id)" title="Remove">
+                      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              }
+
+              <!-- Empty State -->
+              @if (!getDaySchedule(day)?.exercises?.length) {
+                <div class="empty-day">
+                  <div class="empty-icon">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                    </svg>
+                  </div>
+                  <span class="empty-text">No exercises</span>
+                </div>
+              }
+            </div>
+
+            <!-- Add Exercise Button -->
+            <a [routerLink]="['/exercises']" class="add-exercise-link">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+              </svg>
+              Add from library
+            </a>
+          }
+        </div>
+      }
+    </div>
+  </div>
+</div>
+
+<!-- Edit Modal -->
+@if (showEditModal()) {
+  <div class="modal-overlay" (click)="closeEditModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h3>Edit Exercise</h3>
+        <button class="modal-close" (click)="closeEditModal()">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+
+      @if (editingExercise()) {
+        <div class="modal-exercise-preview">
+          <img [src]="editingExercise()!.exercise.imageUrl" [alt]="editingExercise()!.exercise.name" (error)="onImageError($event)">
+          <div>
+            <h4>{{ editingExercise()!.exercise.name }}</h4>
+            <span>{{ formatMuscle(editingExercise()!.exercise.targetMuscle) }}</span>
+          </div>
+        </div>
+
+        <div class="modal-body">
+          <div class="input-row">
+            <div class="input-group">
+              <label>Sets</label>
+              <div class="number-input">
+                <button (click)="decrementSets()" [disabled]="editSets <= 1">−</button>
+                <input type="number" [(ngModel)]="editSets" min="1" max="10">
+                <button (click)="incrementSets()" [disabled]="editSets >= 10">+</button>
+              </div>
+            </div>
+            <div class="input-group">
+              <label>Reps</label>
+              <div class="number-input">
+                <button (click)="decrementReps()" [disabled]="editReps <= 1">−</button>
+                <input type="number" [(ngModel)]="editReps" min="1" max="50">
+                <button (click)="incrementReps()" [disabled]="editReps >= 50">+</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn-secondary" (click)="closeEditModal()">Cancel</button>
+          <button class="btn-primary" (click)="saveEdit()">Save Changes</button>
+        </div>
+      }
+    </div>
+  </div>
+}
+
+<!-- Toast Notification -->
+@if (showToast()) {
+  <div class="toast" [class.success]="toastType() === 'success'" [class.error]="toastType() === 'error'">
+    @if (toastType() === 'success') {
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+      </svg>
+    } @else {
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+      </svg>
+    }
+    {{ toastMessage() }}
+  </div>
+}
+

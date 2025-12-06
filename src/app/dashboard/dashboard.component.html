@@ -1,0 +1,178 @@
+<div class="dashboard">
+  <!-- Background Effects -->
+  <div class="bg-effects">
+    <div class="gradient-orb orb-1"></div>
+    <div class="gradient-orb orb-2"></div>
+  </div>
+
+  <div class="dashboard-content">
+    <!-- Header -->
+    <div class="header">
+      <div class="header-text">
+        <h1 class="greeting">Welcome back, {{ getFirstName() }}! 💪</h1>
+        <p class="subtitle">Ready to crush your fitness goals today?</p>
+      </div>
+    </div>
+
+    <!-- Stats Grid -->
+    <div class="stats-grid">
+      <div class="stat-card" style="--delay: 0.1s">
+        <div class="stat-content">
+          <div class="stat-info">
+            <span class="stat-label">This Week</span>
+            <span class="stat-value">{{ scheduleService.totalExercises() }}</span>
+            <span class="stat-desc green">exercises planned</span>
+          </div>
+          <div class="stat-icon green-bg">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="stat-card" style="--delay: 0.2s">
+        <div class="stat-content">
+          <div class="stat-info">
+            <span class="stat-label">Library</span>
+            <span class="stat-value">{{ exerciseService.exercises().length }}</span>
+            <span class="stat-desc blue">exercises available</span>
+          </div>
+          <div class="stat-icon blue-bg">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="stat-card" style="--delay: 0.3s">
+        <div class="stat-content">
+          <div class="stat-info">
+            <span class="stat-label">Today</span>
+            <span class="stat-value">{{ getTodayExerciseCount() }}</span>
+            <span class="stat-desc orange">{{ isTodayRestDay() ? 'Rest Day 😴' : 'exercises scheduled' }}</span>
+          </div>
+          <div class="stat-icon orange-bg">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="stat-card" style="--delay: 0.4s">
+        <div class="stat-content">
+          <div class="stat-info">
+            <span class="stat-label">Workout Days</span>
+            <span class="stat-value">{{ scheduleService.totalWorkoutDays() }}</span>
+            <span class="stat-desc purple">days this week</span>
+          </div>
+          <div class="stat-icon purple-bg">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <h2 class="section-title">Quick Actions</h2>
+    <div class="actions-grid">
+      <a routerLink="/exercises" class="action-card green-card" style="--delay: 0.5s">
+        <div class="action-icon">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/>
+          </svg>
+        </div>
+        <h3 class="action-title">Exercise Library</h3>
+        <p class="action-desc">Browse our complete collection of exercises with detailed instructions.</p>
+        <span class="action-link">
+          Explore Exercises
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+          </svg>
+        </span>
+      </a>
+
+      <a routerLink="/schedule" class="action-card blue-card" style="--delay: 0.6s">
+        <div class="action-icon">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+          </svg>
+        </div>
+        <h3 class="action-title">Weekly Schedule</h3>
+        <p class="action-desc">Plan your workouts for each day of the week and stay consistent.</p>
+        <span class="action-link">
+          View Schedule
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+          </svg>
+        </span>
+      </a>
+
+      <a routerLink="/chatbot" class="action-card purple-card" style="--delay: 0.7s">
+        <div class="action-icon">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+          </svg>
+        </div>
+        <h3 class="action-title">AI Fitness Coach</h3>
+        <p class="action-desc">Get personalized workout plans, diet advice, and fitness tips.</p>
+        <span class="action-link">
+          Chat Now
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+          </svg>
+        </span>
+      </a>
+    </div>
+
+    <!-- Today's Schedule Preview -->
+    @if (getTodayExerciseCount() > 0) {
+      <div class="today-section" style="--delay: 0.8s">
+        <div class="today-header">
+          <h3 class="today-title">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+            Today's Workout - {{ getTodayLabel() }}
+          </h3>
+          <a routerLink="/schedule" class="today-link">View Full Schedule →</a>
+        </div>
+        <div class="today-exercises">
+          @for (exercise of getTodayExercises(); track exercise.id) {
+            <div class="exercise-item" [class.completed]="exercise.completed">
+              <div class="exercise-status" [class.done]="exercise.completed"></div>
+              <div class="exercise-info">
+                <span class="exercise-name">{{ exercise.exercise.name }}</span>
+                <span class="exercise-details">{{ exercise.sets }} sets × {{ exercise.reps }} reps</span>
+              </div>
+              <span class="exercise-badge" [attr.data-difficulty]="exercise.exercise.difficulty">
+                {{ exercise.exercise.difficulty }}
+              </span>
+            </div>
+          }
+        </div>
+      </div>
+    } @else if (!isTodayRestDay()) {
+      <div class="empty-today" style="--delay: 0.8s">
+        <div class="empty-icon">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+          </svg>
+        </div>
+        <h3 class="empty-title">No Exercises Scheduled Today</h3>
+        <p class="empty-desc">Start planning your workout for {{ getTodayLabel() }}!</p>
+        <a routerLink="/schedule" class="empty-btn">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+          </svg>
+          Plan Your Workout
+        </a>
+      </div>
+    }
+  </div>
+</div>
+

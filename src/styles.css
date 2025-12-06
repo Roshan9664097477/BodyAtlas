@@ -1,0 +1,620 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Fallback styles for SVG icons */
+svg {
+  display: inline-block;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+/* Explicit icon sizing fallbacks */
+.w-4 { width: 1rem; }
+.w-5 { width: 1.25rem; }
+.w-6 { width: 1.5rem; }
+.w-7 { width: 1.75rem; }
+.w-8 { width: 2rem; }
+.w-10 { width: 2.5rem; }
+.w-12 { width: 3rem; }
+
+.h-4 { height: 1rem; }
+.h-5 { height: 1.25rem; }
+.h-6 { height: 1.5rem; }
+.h-7 { height: 1.75rem; }
+.h-8 { height: 2rem; }
+.h-10 { height: 2.5rem; }
+.h-12 { height: 3rem; }
+
+/* Color fallbacks */
+.text-white { color: #ffffff; }
+.text-dark-300 { color: #cbd5e1; }
+.text-dark-400 { color: #94a3b8; }
+.text-primary-400 { color: #4ade80; }
+.text-primary-500 { color: #22c55e; }
+
+.bg-dark-700 { background-color: #334155; }
+.bg-dark-800 { background-color: #1e293b; }
+.bg-dark-900 { background-color: #0f172a; }
+
+.border-dark-600 { border-color: #475569; }
+.border-dark-700 { border-color: #334155; }
+
+/* Flexbox fallbacks */
+.flex { display: flex; }
+.inline-flex { display: inline-flex; }
+.items-center { align-items: center; }
+.justify-center { justify-content: center; }
+
+/* Spacing fallbacks */
+.p-4 { padding: 1rem; }
+.p-6 { padding: 1.5rem; }
+.p-8 { padding: 2rem; }
+.mb-2 { margin-bottom: 0.5rem; }
+.mb-4 { margin-bottom: 1rem; }
+.mb-8 { margin-bottom: 2rem; }
+.gap-2 { gap: 0.5rem; }
+.gap-3 { gap: 0.75rem; }
+
+/* Layout fallbacks */
+.min-h-screen { min-height: 100vh; }
+.w-full { width: 100%; }
+.max-w-md { max-width: 28rem; }
+.rounded-xl { border-radius: 0.75rem; }
+.rounded-2xl { border-radius: 1rem; }
+
+:root {
+  /* Legacy custom colors */
+  --color-primary: #22c55e;
+  --color-primary-dark: #16a34a;
+  --color-bg-dark: #0f172a;
+  --color-bg-card: #1e293b;
+  --color-text: #f1f5f9;
+  --color-text-muted: #94a3b8;
+  --color-accent: #f97316;
+  
+  /* Shadcn CSS Variables - Light theme defaults */
+  --background: 0 0% 100%;
+  --foreground: 222.2 84% 4.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 222.2 84% 4.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222.2 84% 4.9%;
+  --primary: 222.2 47.4% 11.2%;
+  --primary-foreground: 210 40% 98%;
+  --secondary: 210 40% 96.1%;
+  --secondary-foreground: 222.2 47.4% 11.2%;
+  --muted: 210 40% 96.1%;
+  --muted-foreground: 215.4 16.3% 46.9%;
+  --accent: 210 40% 96.1%;
+  --accent-foreground: 222.2 47.4% 11.2%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 214.3 31.8% 91.4%;
+  --input: 214.3 31.8% 91.4%;
+  --ring: 222.2 84% 4.9%;
+  --radius: 0.5rem;
+  
+  /* Sidebar specific */
+  --sidebar-background: 0 0% 98%;
+  --sidebar-foreground: 240 5.3% 26.1%;
+  --sidebar-primary: 240 5.9% 10%;
+  --sidebar-primary-foreground: 0 0% 98%;
+  --sidebar-accent: 240 4.8% 95.9%;
+  --sidebar-accent-foreground: 240 5.9% 10%;
+  --sidebar-border: 220 13% 91%;
+  --sidebar-ring: 217.2 91.2% 59.8%;
+}
+
+/* Dark theme - Applied by default for this app */
+.dark, :root {
+  --background: 222.2 84% 4.9%;
+  --foreground: 210 40% 98%;
+  --card: 222.2 84% 4.9%;
+  --card-foreground: 210 40% 98%;
+  --popover: 222.2 84% 4.9%;
+  --popover-foreground: 210 40% 98%;
+  --primary: 210 40% 98%;
+  --primary-foreground: 222.2 47.4% 11.2%;
+  --secondary: 217.2 32.6% 17.5%;
+  --secondary-foreground: 210 40% 98%;
+  --muted: 217.2 32.6% 17.5%;
+  --muted-foreground: 215 20.2% 65.1%;
+  --accent: 217.2 32.6% 17.5%;
+  --accent-foreground: 210 40% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 217.2 32.6% 17.5%;
+  --input: 217.2 32.6% 17.5%;
+  --ring: 212.7 26.8% 83.9%;
+  
+  /* Dark sidebar */
+  --sidebar-background: 240 5.9% 10%;
+  --sidebar-foreground: 240 4.8% 95.9%;
+  --sidebar-primary: 224.3 76.3% 48%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 240 3.7% 15.9%;
+  --sidebar-accent-foreground: 240 4.8% 95.9%;
+  --sidebar-border: 240 3.7% 15.9%;
+  --sidebar-ring: 217.2 91.2% 59.8%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+  background-attachment: fixed;
+  color: var(--color-text);
+  min-height: 100vh;
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-gradient-to-r from-primary-500 to-primary-600 text-white font-semibold py-3 px-6 rounded-xl
+           hover:from-primary-600 hover:to-primary-700 transition-all duration-300 
+           shadow-lg shadow-primary-500/25 hover:shadow-primary-500/40
+           transform hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-secondary {
+    @apply bg-dark-700 text-white font-medium py-3 px-6 rounded-xl
+           hover:bg-dark-600 transition-all duration-300 border border-dark-600
+           hover:border-dark-500;
+  }
+
+  .btn-danger {
+    @apply bg-gradient-to-r from-red-500 to-red-600 text-white font-semibold py-2 px-4 rounded-xl
+           hover:from-red-600 hover:to-red-700 transition-all duration-300 
+           shadow-lg shadow-red-500/25 hover:shadow-red-500/40;
+  }
+
+  .card {
+    @apply bg-dark-800/80 backdrop-blur-xl rounded-2xl border border-dark-700/50
+           shadow-xl shadow-black/20;
+  }
+
+  .card-hover {
+    @apply card hover:border-primary-500/50 hover:shadow-primary-500/10 transition-all duration-300;
+  }
+
+  .input-field {
+    @apply w-full bg-dark-900/50 border border-dark-600 rounded-xl px-4 py-3
+           text-white placeholder-dark-400 focus:outline-none focus:border-primary-500
+           focus:ring-2 focus:ring-primary-500/20 transition-all duration-300;
+  }
+
+  .glass-effect {
+    @apply bg-white/5 backdrop-blur-lg border border-white/10;
+  }
+
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+
+  .badge-primary {
+    @apply badge bg-primary-500/20 text-primary-400;
+  }
+
+  .badge-blue {
+    @apply badge bg-blue-500/20 text-blue-400;
+  }
+
+  .badge-orange {
+    @apply badge bg-orange-500/20 text-orange-400;
+  }
+
+  .badge-purple {
+    @apply badge bg-purple-500/20 text-purple-400;
+  }
+
+  .badge-red {
+    @apply badge bg-red-500/20 text-red-400;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1e293b;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #475569;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+/* Chat message animations */
+.chat-message {
+  animation: slideUp 0.3s ease-out;
+}
+
+/* Typing indicator */
+.typing-dot {
+  animation: bounceSoft 1.4s infinite ease-in-out both;
+}
+
+.typing-dot:nth-child(1) {
+  animation-delay: -0.32s;
+}
+
+.typing-dot:nth-child(2) {
+  animation-delay: -0.16s;
+}
+
+/* Exercise card hover effect */
+.exercise-card {
+  transition: all 0.3s ease;
+}
+
+.exercise-card:hover {
+  transform: translateY(-4px);
+}
+
+/* Schedule day column */
+.schedule-day {
+  min-height: 200px;
+}
+
+/* Smooth page transitions */
+.page-enter {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* ============================================
+   GLOBAL THEME STYLES
+   ============================================ */
+
+/* Dark Theme (Default) */
+body.dark-theme {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+  color: #f1f5f9;
+}
+
+/* Light Theme */
+body.light-theme {
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #f1f5f9 100%);
+  color: #1e293b;
+}
+
+/* Light theme scrollbar */
+body.light-theme::-webkit-scrollbar-track {
+  background: #e2e8f0;
+}
+
+body.light-theme::-webkit-scrollbar-thumb {
+  background: #94a3b8;
+}
+
+body.light-theme::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+/* ============================================
+   NAVBAR LIGHT THEME
+   ============================================ */
+
+body.light-theme .navbar {
+  background: rgba(255, 255, 255, 0.95);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.3);
+}
+
+body.light-theme .logo-text {
+  color: #1e293b;
+}
+
+body.light-theme .nav-link {
+  color: #64748b;
+}
+
+body.light-theme .nav-link:hover {
+  color: #1e293b;
+  background: rgba(148, 163, 184, 0.2);
+}
+
+body.light-theme .nav-link.active {
+  color: #16a34a;
+  background: rgba(34, 197, 94, 0.1);
+}
+
+body.light-theme .user-name {
+  color: #1e293b;
+}
+
+body.light-theme .user-email {
+  color: #64748b;
+}
+
+body.light-theme .theme-toggle-btn {
+  background: rgba(148, 163, 184, 0.2);
+  color: #64748b;
+}
+
+body.light-theme .theme-toggle-btn:hover {
+  background: rgba(99, 102, 241, 0.15);
+  color: #6366f1;
+}
+
+body.light-theme .logout-btn {
+  color: #64748b;
+}
+
+body.light-theme .logout-btn:hover {
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.1);
+}
+
+body.light-theme .mobile-menu {
+  background: rgba(255, 255, 255, 0.98);
+  border-top: 1px solid rgba(148, 163, 184, 0.3);
+}
+
+body.light-theme .mobile-nav-link {
+  color: #64748b;
+}
+
+body.light-theme .mobile-nav-link:hover,
+body.light-theme .mobile-nav-link.active {
+  color: #16a34a;
+  background: rgba(34, 197, 94, 0.1);
+}
+
+body.light-theme .mobile-theme-toggle {
+  background: rgba(148, 163, 184, 0.15);
+  border-color: rgba(148, 163, 184, 0.3);
+  color: #64748b;
+}
+
+body.light-theme .mobile-user-info {
+  border-top: 1px solid rgba(148, 163, 184, 0.3);
+}
+
+body.light-theme .mobile-user-name {
+  color: #1e293b;
+}
+
+body.light-theme .mobile-user-email {
+  color: #64748b;
+}
+
+body.light-theme .mobile-menu-btn {
+  color: #64748b;
+}
+
+body.light-theme .mobile-menu-btn:hover {
+  color: #1e293b;
+  background: rgba(148, 163, 184, 0.2);
+}
+
+/* ============================================
+   DASHBOARD LIGHT THEME
+   ============================================ */
+
+body.light-theme .dashboard-page,
+body.light-theme .exercises-page,
+body.light-theme .schedule-page,
+body.light-theme .chat-page {
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #f1f5f9 100%);
+}
+
+body.light-theme .stat-card,
+body.light-theme .action-card,
+body.light-theme .workout-preview {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+body.light-theme .stat-label,
+body.light-theme .section-subtitle {
+  color: #64748b;
+}
+
+body.light-theme .stat-value,
+body.light-theme .section-title,
+body.light-theme .greeting h1 {
+  color: #1e293b;
+}
+
+body.light-theme .greeting p {
+  color: #64748b;
+}
+
+/* ============================================
+   EXERCISE CARDS LIGHT THEME
+   ============================================ */
+
+body.light-theme .exercise-card {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+body.light-theme .exercise-card:hover {
+  border-color: rgba(34, 197, 94, 0.4);
+  box-shadow: 0 8px 25px rgba(34, 197, 94, 0.1);
+}
+
+body.light-theme .exercise-name {
+  color: #1e293b;
+}
+
+body.light-theme .exercise-muscle,
+body.light-theme .exercise-meta {
+  color: #64748b;
+}
+
+body.light-theme .filter-btn {
+  background: rgba(148, 163, 184, 0.15);
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  color: #64748b;
+}
+
+body.light-theme .filter-btn:hover,
+body.light-theme .filter-btn.active {
+  background: rgba(34, 197, 94, 0.15);
+  border-color: rgba(34, 197, 94, 0.4);
+  color: #16a34a;
+}
+
+body.light-theme .search-input {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  color: #1e293b;
+}
+
+body.light-theme .search-input::placeholder {
+  color: #94a3b8;
+}
+
+/* ============================================
+   SCHEDULE LIGHT THEME
+   ============================================ */
+
+body.light-theme .day-card {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.3);
+}
+
+body.light-theme .day-card.today {
+  border-color: rgba(34, 197, 94, 0.5);
+  box-shadow: 0 0 20px rgba(34, 197, 94, 0.1);
+}
+
+body.light-theme .day-name {
+  color: #1e293b;
+}
+
+body.light-theme .day-date {
+  color: #64748b;
+}
+
+body.light-theme .scheduled-exercise {
+  background: rgba(148, 163, 184, 0.1);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+body.light-theme .exercise-title {
+  color: #1e293b;
+}
+
+body.light-theme .exercise-details {
+  color: #64748b;
+}
+
+/* ============================================
+   PAGE TITLES LIGHT THEME (GLOBAL)
+   ============================================ */
+
+body.light-theme .page-title,
+body.light-theme h1.page-title,
+body.light-theme .header-left h1,
+body.light-theme .header-left .page-title,
+body.light-theme .page-header h1,
+body.light-theme .page-header .page-title {
+  color: #1e293b !important;
+}
+
+body.light-theme .page-subtitle,
+body.light-theme .header-left p,
+body.light-theme .header-left .page-subtitle,
+body.light-theme .page-header p,
+body.light-theme .page-header .page-subtitle {
+  color: #64748b !important;
+}
+
+body.light-theme .action-title,
+body.light-theme .card-title {
+  color: #1e293b !important;
+}
+
+body.light-theme .action-desc,
+body.light-theme .card-desc {
+  color: #64748b !important;
+}
+
+/* ============================================
+   MODAL LIGHT THEME
+   ============================================ */
+
+body.light-theme .modal-content {
+  background: rgba(255, 255, 255, 0.98);
+  border: 1px solid rgba(148, 163, 184, 0.3);
+}
+
+body.light-theme .modal-header {
+  border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+body.light-theme .modal-title {
+  color: #1e293b;
+}
+
+body.light-theme .modal-body {
+  color: #475569;
+}
+
+body.light-theme .form-label {
+  color: #374151;
+}
+
+body.light-theme .form-input,
+body.light-theme .form-select {
+  background: rgba(248, 250, 252, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  color: #1e293b;
+}
+
+body.light-theme .form-input:focus,
+body.light-theme .form-select:focus {
+  border-color: #22c55e;
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+}
+
+/* ============================================
+   GRADIENT ORBS LIGHT THEME
+   ============================================ */
+
+body.light-theme .gradient-orb.orb-1 {
+  background: linear-gradient(135deg, #c4b5fd, #a78bfa);
+  opacity: 0.25;
+}
+
+body.light-theme .gradient-orb.orb-2 {
+  background: linear-gradient(135deg, #67e8f9, #22d3ee);
+  opacity: 0.25;
+}
+
+/* ============================================
+   THEME TRANSITION
+   ============================================ */
+
+body,
+.navbar,
+.stat-card,
+.exercise-card,
+.day-card,
+.modal-content,
+.chat-container,
+.message-bubble {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}

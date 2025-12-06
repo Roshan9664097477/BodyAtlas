@@ -1,0 +1,193 @@
+<div class="detail-page">
+  <!-- Background -->
+  <div class="bg-effects">
+    <div class="gradient-orb orb-1"></div>
+    <div class="gradient-orb orb-2"></div>
+  </div>
+
+  <div class="detail-content">
+    @if (loading()) {
+      <div class="loading-state">
+        <div class="spinner"></div>
+        <p>Loading exercise...</p>
+      </div>
+    } @else if (!exercise()) {
+      <div class="not-found">
+        <div class="not-found-icon">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+        </div>
+        <h2>Exercise Not Found</h2>
+        <p>The exercise you're looking for doesn't exist.</p>
+        <a routerLink="/exercises" class="btn-back">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+          </svg>
+          Back to Library
+        </a>
+      </div>
+    } @else {
+      <!-- Back Button -->
+      <a routerLink="/exercises" class="back-link">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+        </svg>
+        Back to Library
+      </a>
+
+      <div class="exercise-detail">
+        <!-- Image Section -->
+        <div class="image-section">
+          <div class="image-wrapper">
+            <img 
+              [src]="exercise()!.imageUrl" 
+              [alt]="exercise()!.name"
+              (error)="onImageError($event)"
+            >
+            <div class="image-overlay"></div>
+            <span class="difficulty-badge" [attr.data-level]="exercise()!.difficulty">
+              {{ exercise()!.difficulty }}
+            </span>
+          </div>
+        </div>
+
+        <!-- Info Section -->
+        <div class="info-section">
+          <h1 class="exercise-title">{{ exercise()!.name }}</h1>
+
+          <!-- Muscle Tags -->
+          <div class="muscle-info">
+            <div class="muscle-row">
+              <span class="muscle-label">Target:</span>
+              <span class="muscle-tag primary">{{ formatMuscle(exercise()!.targetMuscle) }}</span>
+            </div>
+            @if (exercise()!.secondaryMuscles.length > 0) {
+              <div class="muscle-row">
+                <span class="muscle-label">Secondary:</span>
+                <div class="muscle-tags">
+                  @for (muscle of exercise()!.secondaryMuscles; track muscle) {
+                    <span class="muscle-tag secondary">{{ formatMuscle(muscle) }}</span>
+                  }
+                </div>
+              </div>
+            }
+          </div>
+
+          <!-- Stats Cards -->
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-icon time">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+              </div>
+              <div class="stat-info">
+                <span class="stat-value">{{ exercise()!.duration }}</span>
+                <span class="stat-label">minutes</span>
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-icon fire">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"/>
+                </svg>
+              </div>
+              <div class="stat-info">
+                <span class="stat-value">{{ exercise()!.calories }}</span>
+                <span class="stat-label">calories</span>
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-icon equipment">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+                </svg>
+              </div>
+              <div class="stat-info">
+                <span class="stat-value equipment-text">{{ exercise()!.equipment.join(', ') || 'None' }}</span>
+                <span class="stat-label">equipment</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Description -->
+          <div class="description-section">
+            <h3>Description</h3>
+            <p>{{ exercise()!.description }}</p>
+          </div>
+
+          <!-- Instructions -->
+          @if (exercise()!.instructions && exercise()!.instructions.length > 0) {
+            <div class="instructions-section">
+              <h3>Instructions</h3>
+              <ol class="instructions-list">
+                @for (instruction of exercise()!.instructions; track instruction; let i = $index) {
+                  <li>
+                    <span class="step-number">{{ i + 1 }}</span>
+                    <span class="step-text">{{ instruction }}</span>
+                  </li>
+                }
+              </ol>
+            </div>
+          }
+
+          <!-- Add to Schedule Section -->
+          <div class="schedule-section">
+            <h3>Add to Schedule</h3>
+            <div class="schedule-form">
+              <div class="day-select">
+                <label>Select Day</label>
+                <div class="day-buttons">
+                  @for (day of daysOfWeek; track day) {
+                    <button 
+                      class="day-btn"
+                      [class.selected]="selectedDay() === day"
+                      (click)="selectedDay.set(day)"
+                    >
+                      {{ getDayShort(day) }}
+                    </button>
+                  }
+                </div>
+              </div>
+
+              <div class="sets-reps">
+                <div class="input-group">
+                  <label>Sets</label>
+                  <input type="number" [(ngModel)]="sets" min="1" max="10">
+                </div>
+                <div class="input-group">
+                  <label>Reps</label>
+                  <input type="number" [(ngModel)]="reps" min="1" max="50">
+                </div>
+                <button 
+                  class="btn-add"
+                  [disabled]="!selectedDay()"
+                  (click)="addToSchedule()"
+                >
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                  </svg>
+                  Add
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div>
+
+<!-- Toast -->
+@if (showToast()) {
+  <div class="toast">
+    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+    </svg>
+    Added to {{ selectedDay() }}!
+  </div>
+}
+

@@ -1,0 +1,223 @@
+<div class="exercises-page">
+  <!-- Background -->
+  <div class="bg-effects">
+    <div class="gradient-orb orb-1"></div>
+    <div class="gradient-orb orb-2"></div>
+  </div>
+
+  <div class="exercises-content">
+    <!-- Header -->
+    <div class="page-header">
+      <div>
+        <h1 class="page-title">Exercise Library</h1>
+        <p class="page-subtitle">Discover exercises for every muscle group</p>
+      </div>
+    </div>
+
+    <!-- Filters -->
+    <div class="filters-card">
+      <div class="filters-grid">
+        <div class="filter-group search-group">
+          <label class="filter-label">Search</label>
+          <div class="search-input-wrapper">
+            <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+            </svg>
+            <input 
+              type="text"
+              [(ngModel)]="searchTerm"
+              (ngModelChange)="applyFilters()"
+              placeholder="Search exercises..."
+              class="search-input"
+            >
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <label class="filter-label">Muscle Group</label>
+          <select [(ngModel)]="selectedMuscleGroup" (ngModelChange)="applyFilters()" class="filter-select">
+            <option value="">All Muscles</option>
+            @for (muscle of muscleGroups; track muscle) {
+              <option [value]="muscle">{{ formatMuscle(muscle) }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label class="filter-label">Difficulty</label>
+          <select [(ngModel)]="selectedDifficulty" (ngModelChange)="applyFilters()" class="filter-select">
+            <option value="">All Levels</option>
+            @for (diff of difficulties; track diff) {
+              <option [value]="diff">{{ capitalize(diff) }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div class="filters-footer">
+        <span class="results-count">
+          Showing <strong>{{ filteredExercises().length }}</strong> exercises
+        </span>
+        @if (hasActiveFilters()) {
+          <button class="clear-filters-btn" (click)="clearFilters()">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+            Clear Filters
+          </button>
+        }
+      </div>
+    </div>
+
+    <!-- Loading State -->
+    @if (exerciseService.loading()) {
+      <div class="loading-state">
+        <div class="spinner"></div>
+        <p>Loading exercises...</p>
+      </div>
+    } @else {
+      <!-- Exercise Grid -->
+      <div class="exercises-grid">
+        @for (exercise of filteredExercises(); track exercise.id; let i = $index) {
+          <div class="exercise-card" [style.animation-delay]="(i * 0.05) + 's'">
+            <div class="card-image">
+              <img 
+                [src]="exercise.imageUrl" 
+                [alt]="exercise.name"
+                (error)="onImageError($event)"
+                loading="lazy"
+              >
+              <div class="image-overlay"></div>
+              <span class="difficulty-badge" [attr.data-level]="exercise.difficulty">
+                {{ exercise.difficulty }}
+              </span>
+            </div>
+
+            <div class="card-content">
+              <h3 class="exercise-name">{{ exercise.name }}</h3>
+              
+              <div class="muscle-tags">
+                <span class="muscle-tag primary">{{ formatMuscle(exercise.targetMuscle) }}</span>
+                @for (muscle of exercise.secondaryMuscles.slice(0, 2); track muscle) {
+                  <span class="muscle-tag secondary">{{ formatMuscle(muscle) }}</span>
+                }
+              </div>
+
+              <p class="exercise-desc">{{ exercise.description }}</p>
+
+              <div class="card-stats">
+                <div class="stat">
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                  </svg>
+                  <span>{{ exercise.duration }} min</span>
+                </div>
+                <div class="stat">
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"/>
+                  </svg>
+                  <span>{{ exercise.calories }} cal</span>
+                </div>
+              </div>
+
+              <div class="card-actions">
+                <a [routerLink]="['/exercises', exercise.id]" class="btn-view">
+                  View Details
+                </a>
+                <button class="btn-add" (click)="openAddToSchedule(exercise)" title="Add to Schedule">
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+
+      <!-- Empty State -->
+      @if (filteredExercises().length === 0) {
+        <div class="empty-state">
+          <div class="empty-icon">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h3>No Exercises Found</h3>
+          <p>Try adjusting your filters or search term</p>
+          <button class="btn-primary" (click)="clearFilters()">Clear Filters</button>
+        </div>
+      }
+    }
+  </div>
+</div>
+
+<!-- Add to Schedule Modal -->
+@if (showScheduleModal()) {
+  <div class="modal-overlay" (click)="closeScheduleModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h3>Add to Schedule</h3>
+        <button class="modal-close" (click)="closeScheduleModal()">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+
+      @if (selectedExercise()) {
+        <div class="modal-exercise">
+          <img [src]="selectedExercise()!.imageUrl" [alt]="selectedExercise()!.name" (error)="onImageError($event)">
+          <div>
+            <h4>{{ selectedExercise()!.name }}</h4>
+            <span>{{ formatMuscle(selectedExercise()!.targetMuscle) }}</span>
+          </div>
+        </div>
+
+        <div class="modal-body">
+          <label class="modal-label">Select Day</label>
+          <div class="day-grid">
+            @for (day of daysOfWeek; track day) {
+              <button 
+                class="day-btn"
+                [class.selected]="selectedDay() === day"
+                (click)="selectedDay.set(day)"
+              >
+                {{ getDayShort(day) }}
+              </button>
+            }
+          </div>
+
+          <div class="sets-reps-row">
+            <div class="input-group">
+              <label>Sets</label>
+              <input type="number" [(ngModel)]="modalSets" min="1" max="10">
+            </div>
+            <div class="input-group">
+              <label>Reps</label>
+              <input type="number" [(ngModel)]="modalReps" min="1" max="50">
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn-secondary" (click)="closeScheduleModal()">Cancel</button>
+          <button class="btn-primary" (click)="addToSchedule()" [disabled]="!selectedDay()">
+            Add to {{ selectedDay() ? getDayShort(selectedDay()!) : 'Schedule' }}
+          </button>
+        </div>
+      }
+    </div>
+  </div>
+}
+
+<!-- Toast -->
+@if (showToast()) {
+  <div class="toast">
+    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+    </svg>
+    Exercise added to schedule!
+  </div>
+}
+
